@@ -31,6 +31,10 @@ module Xmldsig
       Base64.decode64 signature.at_xpath("descendant::ds:SignatureValue", NAMESPACES).content
     end
 
+    def x509_certificate
+      signature.at_xpath("descendant::ds:X509Certificate", NAMESPACES).content
+    end
+
     def valid?(certificate = nil, schema = nil, &block)
       @errors = []
       references.each { |r| r.errors = [] }
